@@ -6,25 +6,31 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import styles from './Styles';
-import {s as tw} from "react-native-wind"
+import React, {useLayoutEffect} from 'react';
+import {Text, View, Button} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Home from './Screens/HomeScreen';
+import About1 from './Screens/AboutScreen1';
+
+const stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <SafeAreaView style={tw`flex justify-center`}>
-      <Text style={tw`text-center rounded mx-10 mt-5 p-2 text-xl bg-blue-600 text-green-500`}>Hello</Text>
-      <Text style={tw`mt-10`}>Welcome</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <stack.Navigator>
+        <stack.Screen
+          name="About1"
+          component={About1}
+          options={{headerShown: false}}
+        />
+        <stack.Screen
+          name="Home"
+          component={Home}
+          options={{headerShown: false}}
+        />
+      </stack.Navigator>
+    </NavigationContainer>
   );
 };
 
